@@ -28,3 +28,4 @@ Provide the EC2 instance permissions to create/attach/detach/delete EBS volumes.
 kubectl apply -f 'https://install.portworx.com/?mc=false&kbver=1.13.8&b=true&s=%22type%3Dgp2%2Csize%3D150%22&md=type%3Dgp2%2Csize%3D150&c=px-cluster-402edc71-118a-417c-bfdb-6822a6443b4a&eks=true&stork=true&lh=true&st=k8s'
 ```
 
+## Install Elasticsearch
