@@ -29,3 +29,21 @@ kubectl apply -f 'https://install.portworx.com/?mc=false&kbver=1.13.8&b=true&s=%
 ```
 
 ## Install Elasticsearch
+### Install helm
+```
+https://github.com/helm/helm/blob/master/docs/install.md
+```
+
+### Initialize helm
+```
+helm  init
+kubectl create serviceaccount --namespace kube-system tiller
+kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
+kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}'
+```
+
+### Deploy elasticsearch helm chart
+```
+helm install --name elasticsearch-master --values manifests/es-master-values-gp2.yaml ../helm-charts/elasticsearch
+helm install --name elasticsearch-client --values manifests/es-client-values-gp2.yaml ../helm-charts/elasticsearch
+```
