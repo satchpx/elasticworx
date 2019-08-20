@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: elasticsearch-data-generator
+  labels:
+    app: es-data-gen
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: es-data-gen
+  template:
+    metadata:
+      labels:
+        app: es-data-gen
+    spec:
+      containers:
+      - name: es-data-generator
+        image: satchpx/es-datagen:0.1
