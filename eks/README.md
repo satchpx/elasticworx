@@ -19,9 +19,8 @@ Note: In this experiment, I am deploying a 3-node EKS cluster running across 3 a
 
 ## Install Portworx
 ### Before you start
-```
 Provide the EC2 instance permissions to create/attach/detach/delete EBS volumes. This is documented [here](https://docs.portworx.com/portworx-install-with-kubernetes/cloud/aws/aws-eks/#prepare)
-```
+
 
 ### Install Portworx using cloud-drives
 ```
@@ -46,4 +45,21 @@ kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"templat
 ```
 helm install --name elasticsearch-master --values manifests/es-master-values-gp2.yaml ../helm-charts/elasticsearch
 helm install --name elasticsearch-client --values manifests/es-client-values-gp2.yaml ../helm-charts/elasticsearch
+helm install --name kibana --values manifests/kibana-values.yaml ../helm-charts/kibana
+```
+
+### Create a service for kibana to expose it outside the kubernetes cluster
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: kibana-np
+  labels:
+    app: kibana
+spec:
+  type: NodePort
+  ports:
+    - port: 5601
+  selector:
+    app: kibana
 ```
