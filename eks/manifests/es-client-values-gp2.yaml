@@ -1,0 +1,46 @@
+clusterName: "elasticsearch"
+nodeGroup: "client"
+
+# The service that non master groups will try to connect to when joining the cluster
+# This should be set to clusterName + "-" + nodeGroup for your master group
+masterService: "elasticsearch-master"
+
+# Elasticsearch roles that will be applied to this nodeGroup
+# These will be set as environment variables. E.g. node.master=true
+roles:
+  master: "false"
+  ingest: "true"
+  data: "true"
+
+replicas: 3
+
+image: "satchpx/elasticsearch"
+imageTag: "7.0.0"
+imagePullPolicy: "Always"
+#imagePullPolicy: "IfNotPresent"
+
+esJavaOpts: "-Xmx12g -Xms12g"
+
+resources:
+  requests:
+    cpu: "2"
+    memory: "14Gi"
+  limits:
+    cpu: "2"
+    memory: "14Gi"
+
+initResources: {}
+  # limits:
+  #   cpu: "25m"
+  #   # memory: "128Mi"
+  # requests:
+  #   cpu: "25m"
+  #   memory: "128Mi"
+
+volumeClaimTemplate:
+  accessModes: [ "ReadWriteOnce" ]
+  #storageClassName: "default"
+  storageClassName: "gp2"
+  resources:
+    requests:
+      storage: 1Ti
