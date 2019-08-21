@@ -44,4 +44,4 @@ volumeClaimTemplate:
   storageClassName: "px-db-rf1-es-data-sc"
   resources:
     requests:
-      storage: 1Ti
+      storage: 50Gi
