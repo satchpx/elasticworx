@@ -63,3 +63,8 @@ spec:
   selector:
     app: kibana
 ```
+
+### Install prometheus and grafana for monitoring
+```
+https://github.com/satchpx/prom-helm
+```
