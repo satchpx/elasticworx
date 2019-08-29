@@ -64,6 +64,25 @@ spec:
     app: kibana
 ```
 
+### Install Elasticsearch Exporter
+```
+helm install --name elasticsearch-exporter ../helm-charts/elasticsearch-exporter --set es.uri=http://elasticsearch-master.default:9200
+```
+
+### Update the exporter service to have it scraped by prometheus
+```
+kubectl edit svc elasticsearch-exporter
+```
+....and add the following annotation under metadata:
+```
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    prometheus.io/scrape: "true"
+```
+
+
 ### Install prometheus and grafana for monitoring
 ```
 https://github.com/satchpx/prom-helm
