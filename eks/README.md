@@ -44,7 +44,7 @@ kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"templat
 ### Deploy elasticsearch helm chart
 ```
 helm install --name elasticsearch-master --values manifests/es-master-values-gp2.yaml ../helm-charts/elasticsearch
-helm install --name elasticsearch-client --values manifests/es-client-values-gp2.yaml ../helm-charts/elasticsearch
+helm install --name elasticsearch-data --values manifests/es-client-values-gp2.yaml ../helm-charts/elasticsearch
 helm install --name kibana --values manifests/kibana-values.yaml ../helm-charts/kibana
 ```
 
