@@ -87,3 +87,9 @@ metadata:
 ```
 https://github.com/satchpx/prom-helm
 ```
+
+### Expose loadbalancer service for kibana and grafana
+```
+kubectl apply -f manifests/kibana-lb.yaml
+kubectl apply -f manifests/grafana-lb.yaml
+```
