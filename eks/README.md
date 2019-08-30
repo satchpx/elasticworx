@@ -49,6 +49,7 @@ helm install --name kibana --values manifests/kibana-values.yaml ../helm-charts/
 ```
 
 ### Create a service for kibana to expose it outside the kubernetes cluster
+NOTE: this is for on-prem, skip this for cloud
 ```
 apiVersion: v1
 kind: Service
