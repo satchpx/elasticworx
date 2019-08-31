@@ -102,3 +102,14 @@ kubectl apply -f manifests/grafana-lb.yaml
 ```
 kubectl apply -f ../es-test/es-datagen.yaml
 ```
+
+### To deploy elasticsearch backed by Portworx volumes
+```
+helm delete --purge elasticsearch-master
+helm delete --purge elasticsearch-data
+kubectl delete pvc elasticsearch-data-elasticsearch-data-0
+kubectl delete pvc elasticsearch-data-elasticsearch-data-1
+kubectl delete pvc elasticsearch-data-elasticsearch-master-0
+kubectl delete pvc elasticsearch-data-elasticsearch-master-1
+kubectl delete pvc elasticsearch-data-elasticsearch-master-2
+```
