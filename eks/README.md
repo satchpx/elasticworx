@@ -112,4 +112,6 @@ kubectl delete pvc elasticsearch-data-elasticsearch-data-1
 kubectl delete pvc elasticsearch-data-elasticsearch-master-0
 kubectl delete pvc elasticsearch-data-elasticsearch-master-1
 kubectl delete pvc elasticsearch-data-elasticsearch-master-2
+helm install --name elasticsearch-master --values manifests/es-master-values-px-rf2.yaml ../helm-charts/elasticsearch
+helm install --name elasticsearch-data --values manifests/es-client-values-px-rf2.yaml ../helm-charts/elasticsearch
 ```
