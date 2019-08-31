@@ -97,5 +97,5 @@ kubectl apply -f manifests/grafana-lb.yaml
 
 ### Deploy elasticsearch data generator
 ```
-kubectl apply -f manifests/es-datagen.yaml
+kubectl apply -f ../es-test/es-datagen.yaml
 ```
