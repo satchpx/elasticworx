@@ -94,3 +94,8 @@ https://github.com/satchpx/prom-helm
 kubectl apply -f manifests/kibana-lb.yaml
 kubectl apply -f manifests/grafana-lb.yaml
 ```
+
+### Deploy elasticsearch data generator
+```
+kubectl apply -f manifests/es-datagen.yaml
+```
