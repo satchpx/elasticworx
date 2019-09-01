@@ -86,8 +86,8 @@ metadata:
 
 ### Install prometheus and grafana for monitoring
 ```
-https://github.com/satchpx/prom-helm
-
+git clone https://github.com/satchpx/prom-helm.git
+cd prom-helm/
 helm install --name prometheus --namespace monitoring prometheus --set server.persistentVolume.storageClass=px-db-rf1-sc,server.shedulerName=stork
 helm install --name grafana --namespace monitoring grafana --set persistence.enabled=true,persistence.storageClassName=px-db-rf1-sc,schedulerName=stork
 ```
