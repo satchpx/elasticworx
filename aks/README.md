@@ -44,15 +44,20 @@ kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admi
 kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}'
 ```
 
+### Create the required storageClasses
+```
+kubectl apply -f manifests/portworx-storageclasses.yaml
+```
+
 ### Deploy elasticsearch helm chart
 ```
-helm install --name elasticsearch-master --values manifests/es-master-values-gp2.yaml ../helm-charts/elasticsearch
-helm install --name elasticsearch-data --values manifests/es-client-values-gp2.yaml ../helm-charts/elasticsearch
+helm install --name elasticsearch-master --values manifests/es-master-values-px-rf3.yaml ../helm-charts/elasticsearch
+helm install --name elasticsearch-data --values manifests/es-client-values-px-rf3.yaml ../helm-charts/elasticsearch
 helm install --name kibana --values manifests/kibana-values.yaml ../helm-charts/kibana
 ```
 
 ### Create a service for kibana to expose it outside the kubernetes cluster
-NOTE: this is for on-prem, skip this for cloud
+* NOTE: this is only for on-prem, skip this for cloud
 ```
 apiVersion: v1
 kind: Service
