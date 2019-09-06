@@ -1,0 +1,47 @@
+clusterName: "elasticsearch"
+nodeGroup: "master"
+
+# The service that non master groups will try to connect to when joining the cluster
+# This should be set to clusterName + "-" + nodeGroup for your master group
+masterService: "elasticsearch-master"
+
+# Elasticsearch roles that will be applied to this nodeGroup
+# These will be set as environment variables. E.g. node.master=true
+roles:
+  master: "true"
+  ingest: "false"
+  data: "false"
+
+replicas: 3
+
+image: "docker.elastic.co/elasticsearch/elasticsearch-oss"
+imageTag: "7.3.0"
+imagePullPolicy: "Always"
+#imagePullPolicy: "IfNotPresent"
+
+esJavaOpts: "-Xmx1g -Xms1g"
+
+resources:
+  requests:
+    cpu: "100m"
+    memory: "1Gi"
+  #limits:
+  #  cpu: "100m"
+  #  memory: "2Gi"
+
+initResources: {}
+  # limits:
+  #   cpu: "25m"
+  #   # memory: "128Mi"
+  # requests:
+  #   cpu: "25m"
+  #   memory: "128Mi"
+
+schedulerName: "stork"
+
+volumeClaimTemplate:
+  accessModes: [ "ReadWriteOnce" ]
+  storageClassName: "px-db-rf3-sc"
+  resources:
+    requests:
+      storage: 1Gi
