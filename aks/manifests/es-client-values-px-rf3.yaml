@@ -44,4 +44,4 @@ volumeClaimTemplate:
   storageClassName: "px-db-rf3-sc"
   resources:
     requests:
-      storage: 50Gi
+      storage: 10Gi
