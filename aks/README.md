@@ -103,7 +103,7 @@ helm install --name grafana --namespace monitoring grafana --set persistence.ena
 ### Expose loadbalancer service for kibana and grafana
 ```
 kubectl apply -f manifests/kibana-lb.yaml
-kubectl apply -f manifests/grafana-lb.yaml
+kubectl apply -f manifests/grafana-lb.yaml -n monitoring
 ```
 
 ### Deploy elasticsearch data generator
