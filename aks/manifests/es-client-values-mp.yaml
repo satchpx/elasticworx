@@ -1,0 +1,46 @@
+clusterName: "datastore"
+nodeGroup: "elasticsearch-client"
+
+# The service that non master groups will try to connect to when joining the cluster
+# This should be set to clusterName + "-" + nodeGroup for your master group
+masterService: "datastore-elasticsearch-master"
+
+# Elasticsearch roles that will be applied to this nodeGroup
+# These will be set as environment variables. E.g. node.master=true
+roles:
+  master: "false"
+  ingest: "true"
+  data: "true"
+
+replicas: 3
+
+image: "satchpx/elasticsearch"
+imageTag: "7.0.0"
+imagePullPolicy: "Always"
+#imagePullPolicy: "IfNotPresent"
+
+esJavaOpts: "-Xmx26g -Xms26g"
+
+resources:
+  requests:
+    cpu: "14"
+    memory: "50Gi"
+  limits:
+    cpu: "14"
+    memory: "50Gi"
+
+initResources: {}
+  # limits:
+  #   cpu: "25m"
+  #   # memory: "128Mi"
+  # requests:
+  #   cpu: "25m"
+  #   memory: "128Mi"
+
+volumeClaimTemplate:
+  accessModes: [ "ReadWriteOnce" ]
+  #storageClassName: "default"
+  storageClassName: "managed-premium"
+  resources:
+    requests:
+      storage: 1Ti
